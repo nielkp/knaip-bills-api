@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@biomejs/biome@^2.1.1":
+"@biomejs/biome@2.1.1":
   version "2.1.1"
-  resolved "https://registry.npmjs.org/@biomejs/biome/-/biome-2.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/@biomejs/biome/-/biome-2.1.1.tgz#53b9317d356aef01a610b46ca4574a9bb4ca0094"
   optionalDependencies:
     "@biomejs/cli-darwin-arm64" "2.1.1"
     "@biomejs/cli-darwin-x64" "2.1.1"
@@ -185,6 +185,10 @@
   dependencies:
     "@fastify/forwarded" "^3.0.0"
     ipaddr.js "^2.1.0"
+
+"@prisma/client@^6.11.1":
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-6.11.1.tgz#ef97454d8b0bb192b26ec4111def83ddee4615e3"
 
 "@prisma/config@6.11.1":
   version "6.11.1"
