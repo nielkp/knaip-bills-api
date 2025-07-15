@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import type { FastifyInstance } from "fastify";
 import categoryRoutes from "./category.routes";
 
 async function routes(fastify: FastifyInstance): Promise<void> {
