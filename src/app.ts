@@ -5,7 +5,7 @@ import routes from './routes';
 const app: FastifyInstance = Fastify({
   logger: true,
 });
-
-app.register(routes, { prefix: '/api' })
+//adicioanr prefixo caso desejar, { prefix: '/api' }
+app.register(routes);
 
 export default app
