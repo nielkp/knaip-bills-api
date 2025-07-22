@@ -8,12 +8,16 @@ const transactionRoutes = async (fastify: FastifyInstance) => {
 
   fastify.route({
     method: "POST",
-    url: '/',
+    url: "/",
     schema: {
-      body: zodToJsonSchema(createTransactionSchema),
+      body: {
+        ...zodToJsonSchema(createTransactionSchema),
+        type: "object",
+      },
     },
     handler: createTransaction,
   });
+
 };
 
 export default transactionRoutes;

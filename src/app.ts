@@ -17,7 +17,7 @@ app.register(fastifyStatic, {
 
 // Logar IP de todas as requisições
 app.addHook('onRequest', async (request, reply) => {
-  request.log.info({ ip: request.ip }, `Requisição recebida: ${request.method} ${request.url}`);
+  request.log.info({ ip: request.ip }, `Request recebido: ${request.method} ${request.url}`);
 });
 
 // Rotas principais
