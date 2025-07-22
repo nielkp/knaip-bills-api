@@ -18,3 +18,20 @@ export const createTransactionSchema = z.object({
     error: () => ({ message: "Tipo inválido." }),
   })
 });
+
+export const getTransactionsSchema = z.object({
+  month: z.string().optional(),
+  year: z.string().optional(),
+  type: z
+    .enum([TransactionType.expense, TransactionType.income], {
+      error: () => ({ message: "Tipo inválido." }),
+    }),
+  categoryId: z
+    .string()
+    .refine(isValidObjectId, {
+      message: "Categoria inválida."
+    }),
+});
+
+
+export type GetTransactionsQuery = z.infer<typeof getTransactionsSchema>;
