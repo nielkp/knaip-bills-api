@@ -10,7 +10,7 @@ import type { TransactionSummary } from "../../types/transaction.types";
 dayjs.extend(utc)
 
 export const getTransactionsSummary = async (request: FastifyRequest<{ Querystring: GetTransactionsSummaryQuery }>, reply: FastifyReply): Promise<void> => {
-  const userId = "@Niel$" // userId => request.userId
+  const userId = request.userId // userId => request.userId
   //validação de dados
   if (!userId) {
     reply.status(401).send({ error: "Usuário não Autenticado!" });

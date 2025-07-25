@@ -4,7 +4,7 @@ import prisma from "../../config/prisma";
 
 
 export const deleteTransaction = async (request: FastifyRequest<{ Params: DeleteTransactionParams }>, reply: FastifyReply): Promise<void> => {
-  const userId = "@Niel$" // userId => request.userId
+  const userId = request.userId // userId => request.userId
   const { id } = request.params;
 
   //validação de dados
