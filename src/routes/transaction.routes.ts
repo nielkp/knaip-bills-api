@@ -9,7 +9,7 @@ import { authMiddleware } from "../middlewares/auth.middlewares";
 
 
 const transactionRoutes = async (fastify: FastifyInstance) => {
-
+  //MIDDLEWARE DE AUTENTICAÇÃO!!!
   fastify.addHook('preHandler', authMiddleware)
 
   //CRIAR TRANSAÇÃO
