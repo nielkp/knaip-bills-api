@@ -3,6 +3,7 @@ import fastifyStatic from '@fastify/static';
 import path from 'path';
 import type { FastifyInstance } from 'fastify';
 import routes from './routes';
+import cors from '@fastify/cors';
 
 const app: FastifyInstance = Fastify({
   logger: true,
@@ -19,6 +20,8 @@ app.register(fastifyStatic, {
 app.addHook('onRequest', async (request, reply) => {
   request.log.info({ ip: request.ip }, `Request recebido: ${request.method} ${request.url}`);
 });
+// Rota do FastifyCors
+app.register(cors);
 
 // Rotas principais
 app.register(routes);
