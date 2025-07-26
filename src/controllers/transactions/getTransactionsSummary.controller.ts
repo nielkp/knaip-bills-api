@@ -70,7 +70,7 @@ export const getTransactionsSummary = async (request: FastifyRequest<{ Querystri
       totalExpenses,
       totalIncomes,
       balance: Number((totalIncomes - totalExpenses).toFixed(2)),
-      expesesByCategory: Array.from(groupedExpenses.values()).map((entry) => ({
+      expensesByCategory: Array.from(groupedExpenses.values()).map((entry) => ({
         ...entry,
         percentage: Number.parseFloat(((entry.amount / totalExpenses) * 100).toFixed(2)),
       })).sort((a, b) => b.amount - a.amount),
