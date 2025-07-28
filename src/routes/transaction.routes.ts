@@ -1,11 +1,12 @@
 import type { FastifyInstance } from "fastify";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import createTransaction from "../controllers/transactions/createTransaction.controller";
-import { createTransactionSchema, deleteTransactionSchema, getTransactionsSchema, getTransactionsSummarySchema } from "../schemas/transaction.schema";
+import { createTransactionSchema, deleteTransactionSchema, getHistoryTransactionsSchema, getTransactionsSchema, getTransactionsSummarySchema } from "../schemas/transaction.schema";
 import { getTransactions } from "../controllers/transactions/getTransactions.controller";
 import { getTransactionsSummary } from "../controllers/transactions/getTransactionsSummary.controller";
 import { deleteTransaction } from "../controllers/transactions/deleteTransaction.controller";
 import { authMiddleware } from "../middlewares/auth.middlewares";
+import { getHistoryTransactions } from "../controllers/transactions/getHistoryTransactions.controller";
 
 
 const transactionRoutes = async (fastify: FastifyInstance) => {
@@ -49,6 +50,19 @@ const transactionRoutes = async (fastify: FastifyInstance) => {
       },
     },
     handler: getTransactionsSummary,
+  });
+
+  //BUSCAR HISTORICO DE TRANSAÇÕES
+  fastify.route({
+    method: "GET",
+    url: "/history",
+    schema: {
+      querystring: {
+        ...zodToJsonSchema(getHistoryTransactionsSchema),
+        type: "object"
+      },
+    },
+    handler: getHistoryTransactions,
   });
 
   //DELETAR TRANSAÇÃO
