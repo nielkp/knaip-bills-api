@@ -21,7 +21,9 @@ app.addHook('onRequest', async (request, reply) => {
   request.log.info({ ip: request.ip }, `Request recebido: ${request.method} ${request.url}`);
 });
 // Rota do FastifyCors
-app.register(cors);
+app.register(cors, {
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+});
 
 // Rotas principais
 app.register(routes);
