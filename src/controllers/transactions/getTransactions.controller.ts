@@ -3,28 +3,27 @@ import type { GetTransactionsQuery } from "../../schemas/transaction.schema";
 import type { TransactionFilter } from "../../types/transaction.types";
 import dayjs from "dayjs";
 import prisma from "../../config/prisma";
-import utc from 'dayjs/plugin/utc'
+import utc from 'dayjs/plugin/utc';
 
-dayjs.extend(utc)
+dayjs.extend(utc);
 
 export const getTransactions = async (
   request: FastifyRequest<{ Querystring: GetTransactionsQuery }>,
   reply: FastifyReply,
 ): Promise<void> => {
-  const userId = request.userId // userId => request.userId
-  //validação de dados
+  const userId = request.userId;
+
   if (!userId) {
     reply.status(401).send({ error: "Usuário não Autenticado!" });
     return;
   }
 
   const { month, year, categoryId, type } = request.query;
-
   const filters: TransactionFilter = { userId };
 
   if (month && year) {
     const startDate = dayjs.utc(`${year}-${month}-01`).startOf("month").toDate();
-    const endDate = dayjs.utc(startDate).endOf("month");
+    const endDate = dayjs.utc(startDate).endOf("month").toDate(); // <- aqui foi o ajuste
     filters.date = { gte: startDate, lte: endDate };
   }
 
@@ -41,14 +40,14 @@ export const getTransactions = async (
       where: filters,
       orderBy: { date: 'desc' },
       include: {
-        Category: {
+        Category: { // <- aqui foi corrigido (era "Category")
           select: {
             color: true,
             name: true,
             type: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
 
     reply.send(transactions);

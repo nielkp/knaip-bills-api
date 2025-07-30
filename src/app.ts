@@ -34,7 +34,7 @@ app.register(cors, {
       callback(null, true);
     } else {
       console.error('❌ Origem bloqueada por CORS:', origin);
-      callback(new Error('Não perminito pelo CORS'));
+      callback(new Error('Não perminito pelo CORS'), false);
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
